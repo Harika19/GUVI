@@ -1,0 +1,34 @@
+#finding max height of a tree
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+class Tree:
+    def __init__(self):
+        self.root=None
+    def height(self,temp):
+        if(self.root==None):
+            print('tree is empty')
+            return 0
+        else:
+            lefth=0
+            righth=0
+        if(temp.left!=None):
+            lefth=self.height(temp.left)
+        if(temp.right!=None):
+            righth=self.height(temp.right)
+        maximum=lefth if(lefth>righth) else righth
+        return (maximum+1)
+b=Tree()
+b.root=node(1)
+b.root.left=node(2)
+b.root.right=node(3)
+b.root.left.left=node(4)
+b.root.left.right=node(5)
+b.root.left.left.left=node(6)
+b.root.left.left.left.left=node(7)
+print("Maximum height  " + str(b.height(b.root))); 
+
+
+
