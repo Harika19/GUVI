@@ -1,0 +1,67 @@
+#reverse a linked list
+#include <iostream>
+using namespace std;
+struct node{
+	int data;
+	node* next;
+};
+class linked_l{
+	private:
+		node *head,*tail;
+		public:
+			linked_l(){
+				head=NULL;
+				tail=NULL;
+			}
+		void add_n(int n){
+			node *temp=new node;
+			temp->data=n;
+			temp->next=NULL;
+		    if(head==NULL){
+		    	head=temp;
+		    	tail=temp;
+			}
+			else{
+				tail->next=temp;
+				tail=tail->next;
+			}
+			
+		}
+        void reverse()
+        {
+        	node *curr,*prev,*next;
+        	curr=head;
+        	prev=NULL;
+        	while(curr!=NULL)
+        	{
+        		next=curr->next;
+        		curr->next=prev;
+        		prev=curr;
+        		curr=next;        		
+			}
+			head=prev;
+		}
+		void display()
+		{
+			node* temp;
+			temp=head;
+			while(temp!=NULL)
+			{
+				cout<<temp->data<<endl;
+				temp=temp->next;
+					}
+					cout<<endl;	
+		}
+			
+};
+int main()
+{
+	linked_l a;
+	a.add_n(1);
+	a.add_n(2);
+	a.add_n(3);
+	a.display();
+	a.reverse();
+	a.display();
+		return 0;
+}
