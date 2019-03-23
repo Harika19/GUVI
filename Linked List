@@ -2,96 +2,82 @@
 #include <iostream>
 using namespace std;
 struct node{
-int data;
-node* next;
+	int data;
+	node* next;
 };
 class linked_l{
-private:
-node *head,*tail;
-public:
-linked_l()
-{
-head=NULL;
-tail=NULL;
-}
-void add_node(int n)
-{
-node *temp=new node;
-temp->data=n;
-temp->next=NULL;
- 
-if(head==NULL)
-{
-head=temp;
-tail=temp;
-}
-else{
-tail->next=temp;
-tail=tail->next;
-}
-}
-void insert_end(int d)
-{
-node *tempo=new node;
-tempo->data=d;
-tempo->next=NULL;
-if(head==NULL)
-{
-head=tempo;
-tail=tempo;
-}
-else{ 
-tail->next=tempo;
-tail=tail->next;
-}
-}
-void front(int s)
-{
-node *temp2=new node;
-temp2->data=s;
-temp2->next=NULL;
-if(head==NULL)
-{
-head=temp2;
-tail=temp2;
-}
-else{
-temp2->next=head;
-head=temp2;
-}
-}
-void delete_any(int l)
-{
-node *temp4;
-node *temp5;
-temp5=head;
-temp4=NULL;
-while(temp5->data!=l)
-{
-temp4=temp5;
-temp5=temp5->next;
-}
-temp5= temp5->next;
-temp4->next=temp5;
-}
- 
-void display()
-{
-node* temp;
-temp=head;
-while(temp!=NULL){
-cout<<temp->data;
-temp=temp->next;
-}}
+	private:
+		node *head,*tail;
+		public:
+			linked_l(){
+				head=NULL;
+				tail=NULL;
+			}
+		void add_n(int n){
+			node *temp=new node;
+			temp->data=n;
+			temp->next=NULL;
+		    if(head==NULL){
+		    	head=temp;
+		    	tail=temp;
+			}
+			else{
+				tail->next=temp;
+				tail=tail->next;
+			}
+			
+		}
+		void add_front(int d){
+			node *temp1=new node;
+			temp1->data=d;
+			temp1->next=NULL;
+			if(head==NULL){
+				head=temp1;
+				tail=temp1;
+			}
+			else{
+				temp1->next=head;
+				head=temp1;
+		}
+	}
+		//removing node by its position
+		void removenode(int p)
+		{
+			node* tempp=head;
+			if(p==1)
+			{
+				head=tempp->next;
+				delete(tempp);
+			}
+			int i;
+			for(i=0;i<p-2;i++)
+			{
+				tempp=tempp->next;
+			}
+			node* temp3=tempp->next;
+			tempp->next=temp3->next;
+			delete(temp3);
+		}
+		void display()
+		{
+			node* temp;
+			temp=head;
+			while(temp!=NULL)
+			{
+				cout<<temp->data;
+				temp=temp->next;
+					}	
+		}
+			
 };
-int main() {
-	// your code goes here
-linked_l a;
-a.add_node(1);
-a.add_node(2);
-a.front(3);
-a.insert_end(4);
-a.delete_any(2);
-a.display();
-return 0;
+int main()
+{
+	linked_l a;
+	a.add_n(1);
+	a.add_n(2);
+	a.add_n(3);
+	a.add_front(4);
+	a.removenode(3);
+	a.display();
+	return 0;
 }
